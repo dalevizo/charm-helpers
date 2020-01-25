@@ -261,6 +261,8 @@ class SharedDBContext(OSContextGenerator):
                 }
                 if CompareOpenStackReleases(rel) < 'queens':
                     ctxt['database_type'] = 'mysql'
+                if config('database-type'):
+                    ctxt['database_type'] = config('database-type')
                 if self.context_complete(ctxt):
                     db_ssl(rdata, ctxt, self.ssl_dir)
                     return ctxt
